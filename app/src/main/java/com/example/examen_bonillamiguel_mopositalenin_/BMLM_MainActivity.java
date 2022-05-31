@@ -15,7 +15,14 @@ import java.util.ArrayList;
 
 public class BMLM_MainActivity extends AppCompatActivity {
 
+    private ArrayAdapter<Integer> adapter;
+    private ArrayAdapter<Integer> adapterIndices;
+    private ArrayAdapter<Integer> adapterOrdenar;
+    private int[] listaOriginal;
+    private int[] vectorIndices;
     private ListView list_view_mostrar;
+    private ListView list_view_indices;
+    private ListView list_view_ordenar;
     private int REQUEST_LAUNCHER_ACTIVITY2 = 1;
 
     @Override
@@ -24,7 +31,8 @@ public class BMLM_MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         list_view_mostrar = findViewById(R.id.listView_original);
-
+        list_view_indices = findViewById(R.id.listView_indices);
+        list_view_ordenar = findViewById(R.id.listView_ordenar);
     }
 
     public void Siguiente(View view){
@@ -39,14 +47,64 @@ public class BMLM_MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_LAUNCHER_ACTIVITY2){
             if(resultCode == Activity.RESULT_OK){
-                int[] listaOriginal = data.getIntArrayExtra("vectorOriginal");
-
+                listaOriginal = data.getIntArrayExtra("vectorOriginal");
             }
         }
     }
 
     public void Mostrar(View view){
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, );
+        vectorIndices = new int[listaOriginal.length];
+        int i = 0;
+        ArrayList<Integer> listaAux = new ArrayList<Integer>();
+        ArrayList<Integer> listaIndicesAux = new ArrayList<Integer>();
+
+        do {
+            listaAux.add(listaOriginal[i]);
+            i++;
+        }while(i < listaOriginal.length);
+
+        i = 0;
+        do {
+            vectorIndices[i] = i;
+            i++;
+        }while(i < listaOriginal.length);
+
+        i = 0;
+        do {
+            listaIndicesAux.add(vectorIndices[i]);
+            i++;
+        }while(i < vectorIndices.length);
+
+        adapter = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaAux);
+        list_view_mostrar.setAdapter(adapter);
+
+        adapterIndices = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaIndicesAux);
+        list_view_indices.setAdapter(adapterIndices);
+
+    }
+
+
+    public void Ordenar(View view) {
+
+        ArrayList<Integer> lista = new ArrayList<>();
+
+        for (int k = 0; k < listaOriginal.length; k++) {
+            for (int f = 0; f < listaOriginal.length - k; f++) {
+                if (listaOriginal[f] > listaOriginal[f + 1]) {
+                    int aux;
+                    aux = listaOriginal[f];
+                    listaOriginal[f] = listaOriginal[f + 1];
+                    listaOriginal[f + 1] = aux;
+                }
+            }
+
+            for (int i = 0; i < listaOriginal.length; i++){
+                lista.add(listaOriginal[i]);
+            }
+
+            adapterOrdenar = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, lista);
+            list_view_ordenar.setAdapter(adapterOrdenar);
+        }
     }
 
 }

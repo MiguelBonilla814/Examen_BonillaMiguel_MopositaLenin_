@@ -36,7 +36,6 @@ public class BMLM_SegundaActivity extends AppCompatActivity {
     public void Agregar(View view){
         listaNumeros.add(Integer.parseInt(edit_agregar_numero.getText().toString()));
         edit_agregar_numero.setText("");
-        Toast.makeText(this, String.valueOf(listaNumeros.size()), Toast.LENGTH_LONG).show();
         adapter = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaNumeros);
         list.setAdapter(adapter);
     }
