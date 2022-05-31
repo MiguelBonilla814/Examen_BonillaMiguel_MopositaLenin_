@@ -20,6 +20,7 @@ public class BMLM_MainActivity extends AppCompatActivity {
     private ArrayAdapter<Integer> adapterOrdenar;
     private int[] listaOriginal;
     private int[] vectorIndices;
+    private int[] indicesOrdenados;
     private ListView list_view_mostrar;
     private ListView list_view_indices;
     private ListView list_view_ordenar;
@@ -87,16 +88,22 @@ public class BMLM_MainActivity extends AppCompatActivity {
     public void Ordenar(View view) {
 
         ArrayList<Integer> lista = new ArrayList<>();
-
-        for (int k = 0; k < listaOriginal.length; k++) {
-            for (int f = 0; f < listaOriginal.length - k; f++) {
-                if (listaOriginal[f] > listaOriginal[f + 1]) {
+        indicesOrdenados = new int[listaOriginal.length];
+        int k = 0;
+        do {
+            for (int f = 0; f < listaOriginal.length - k - 1; f++) {
+                if (listaOriginal[f + 1] > listaOriginal[f]) {
                     int aux;
-                    aux = listaOriginal[f];
-                    listaOriginal[f] = listaOriginal[f + 1];
-                    listaOriginal[f + 1] = aux;
+                    aux = listaOriginal[f + 1];
+                    listaOriginal[f + 1] = listaOriginal[f];
+                    listaOriginal[f] = aux;
                 }
+                //Código sin acabar falto tiempo :(
             }
+            k++;
+        }while(k < listaOriginal.length);
+
+
 
             for (int i = 0; i < listaOriginal.length; i++){
                 lista.add(listaOriginal[i]);
@@ -104,7 +111,6 @@ public class BMLM_MainActivity extends AppCompatActivity {
 
             adapterOrdenar = new ArrayAdapter<Integer>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, lista);
             list_view_ordenar.setAdapter(adapterOrdenar);
-        }
     }
 
 }
