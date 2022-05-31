@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <ListView
-        android:id="@+id/listIndices"
+        android:id="@+id/listView_indices"
         android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="30dp"
@@ -110,7 +110,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <ListView
-        android:id="@+id/listOriginal"
+        android:id="@+id/listView_original"
         android:layout_width="170dp"
         android:layout_height="160dp"
         android:layout_marginStart="30dp"
