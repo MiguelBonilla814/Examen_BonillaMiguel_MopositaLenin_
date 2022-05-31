@@ -18,7 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".BMLM_MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

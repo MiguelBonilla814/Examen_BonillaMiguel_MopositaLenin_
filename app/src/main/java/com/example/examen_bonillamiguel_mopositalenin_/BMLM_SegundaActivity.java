@@ -31,6 +31,8 @@ public class BMLM_SegundaActivity extends AppCompatActivity {
 
     }
 
+    //
+
     public void Agregar(View view){
         listaNumeros.add(Integer.parseInt(edit_agregar_numero.getText().toString()));
         edit_agregar_numero.setText("");

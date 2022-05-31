@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class BMLM_MainActivity extends AppCompatActivity {
 
-    //
+    private int REQUEST_LAUNCHER_ACTIVITY2 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +22,21 @@ public class BMLM_MainActivity extends AppCompatActivity {
 
     }
 
+    public void Siguiente(View view){
+        Intent intent = new Intent(this, BMLM_SegundaActivity.class);
+        startActivityForResult(intent, REQUEST_LAUNCHER_ACTIVITY2);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_LAUNCHER_ACTIVITY2){
+            if(resultCode == Activity.RESULT_OK){
+                int[] listaOriginal = data.getIntArrayExtra("vectorOriginal");
+
+            }
+        }
+    }
 
 }
