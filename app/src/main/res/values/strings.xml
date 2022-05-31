@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Examen_BonillaMiguel_MopositaLenin_</string>
+
+    <string name="hint_agregar">Agregar Número</string>
+    <string name="button_agregar">Agregar</string>
+    <string name="button_cerrar">Cerrar</string>
 </resources>
